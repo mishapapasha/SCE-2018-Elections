@@ -1,4 +1,4 @@
-# SCE-Tirgul-2
+# SCE-2018-Elections
 
 ## Prerequisites
 [Prerequisites help section](Help/help.md)

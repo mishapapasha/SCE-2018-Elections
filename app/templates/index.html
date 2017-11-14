@@ -1,0 +1,29 @@
+
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="container" align="center">
+        <h1 dir="rtl">ברוכים הבאים  , {{ user.first_name }}</h1>
+        <h3 dir="rtl">לצורך הצבעה, בחר את המפלגה הרצויה ולחץ 'סיום'</h3>
+        <form method="post">
+            {% for party in parties %}
+            <div class="col-sm-12 col-xs-12 col-md-4 col-lg-3" style="padding: 5px">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="party_name" id="{{party.name}}" value="{{party.name}}">
+                            <div class="thumbnail">
+                                <center>{{ party.name}}</center>
+                            <div align="center"><img src="{{party.picture}}" align="middle" width="200" height="auto"></div>
+                            </div>
+                        </label>
+                    </div>
+            </div>
+        {% endfor %}
+            <div class="submitbote">
+            <button type="submit" class="btn btn-primary">סיום</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

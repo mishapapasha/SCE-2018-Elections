@@ -46,7 +46,8 @@ def login():
         last_name = request.form['last_name']
         user_id = request.form['user_id']
 
-        user = User.query.filter(User.first_name == first_name, User.last_name == last_name, User.id == user_id).first()
+        user = User.query.filter(User.first_name == first_name, User.last_name == last_name,
+                                 User.user_id == int(user_id)).first()
         if user:
             login_user(user)  ## built in 'flask login' method that creates a user session
             return redirect(url_for('index'))

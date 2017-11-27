@@ -5,10 +5,12 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(120), index=True, unique=False)
     last_name = db.Column(db.String(120), index=True, unique=False)
+    user_id = db.Column(db.Integer ,index=True,unique=False)
 
-    def __init__(self, first_name, last_name):
+    def __init__(self, first_name, last_name, user_id):
         self.first_name = first_name
         self.last_name = last_name
+        self.user_id = user_id
 
     @property
     def is_authenticated(self):

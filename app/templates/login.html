@@ -16,9 +16,14 @@
         <label class="loginlabel" for="first_name">:שם פרטי</label>
         <input id="first_name" type="text" placeholder="שם פרטי" align="right" name="first_name" value="{{
           request.form.first_name }}">
-        <label class="loginlabel" for="last_name">:שם משפחה</label>
+
+          <label class="loginlabel" for="last_name">:שם משפחה</label>
          <input id="last_name" type="text" placeholder="שם משפחה" align="right" name="last_name" value="{{
           request.form.last_name }}">
+
+          <label class="loginlabel" for="user_id">:תעודת זהות</label>
+          <input id="user_id" type="number" placeholder="תעודת זהות" align="right" name="user_id" value="{{
+          request.form.user_id }}">
         <input class="btn btn-default" type="submit" value="כניסה">
       </form>
       {% if error %}

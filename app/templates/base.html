@@ -5,15 +5,15 @@
     <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="static/all.css" rel="stylesheet" media="screen">
     {% if title %}
-    <title>{{ title }} - בחירות</title>
+        <title>{{ title }} - בחירות</title>
     {% else %}
-    <title>בחירות</title>
+        <title>בחירות</title>
     {% endif %}
   </head>
   <body>
     <div id="topbar">
         {% if g.user.is_authenticated %}
-        <a href="{{ url_for('logout') }}">יציאה</a>
+            <a href="{{ url_for('logout') }}">יציאה</a>
         {% endif %}
     </div>
 

@@ -55,9 +55,13 @@ def login():
 
         user = User.query.filter(User.first_name == first_name, User.last_name == last_name,
                                  User.user_id == int(user_id)).first()
+
         if user:
-            login_user(user)  ## built in 'flask login' method that creates a user session
-            return redirect(url_for('index'))
+            if user.voted:
+                error = u'הצבעת כבר'
+            else:
+                login_user(user)  ## built in 'flask login' method that creates a user session
+                return redirect(url_for('index'))
 
         else: ##validation error
             error = u'המצביע אינו מופיע בבסיס הנתונים'

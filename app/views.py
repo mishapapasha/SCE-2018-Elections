@@ -17,8 +17,15 @@ def load_user(user_id):
 
 
 def validateAndAdd(party_name):
-    ## implement me!
-    pass
+    if (current_user.voted):
+        return False
+
+    current_user.voted = True
+    party = Party.query.filter(Party.name == party_name).first()
+    party.votes += 1
+
+    Party.query.session.commit()
+    User.query.session.commit()
 
 
 @app.route('/', methods=['GET'])

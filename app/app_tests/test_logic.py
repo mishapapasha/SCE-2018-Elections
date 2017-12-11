@@ -1,33 +1,28 @@
-import os
 import unittest
 from flask import url_for
 from app.models import User
+
 from app.app_tests.test_base import BaseTestCase
 
 
-
-
-basedir = os.path.abspath(os.path.dirname(__file__))
-
 class UserViewTest(BaseTestCase):
 
-    def test_login_without_ID(self):
-        pass
+    def test_check_user_exist(self):
+        self.db.session.add(User(first_name='aaa',last_name='fff',user_id=1234))
+        self.db.session.commit()
 
+        res = self.client.post('login',data=dict(first_name='aaa',last_name='fff',user_id=1234))
+        self.assert_redirects(res, url_for('index'))
 
-    def test_login_not_exists(self):
-        User(first_name='aaa', last_name='fdas',user_id=64356)
+    def test_login_without_id(self):
+        self.db.session.add(User(first_name='aaa', last_name='fff', user_id=1234))
+        self.db.session.commit()
+        res = self.client.post('login', data=dict(first_name='aaa', last_name='fff'))
+        self.assertEqual(res.status_code, 400)
 
-        form = {}
-        form['first_name'] = 'John'
-        form['last_name'] = 'Vituli'
-        form['user_id'] = '123456'
-
-
-        response = self.client.post(url_for('login',content_type= 'application/x-www-form-urlencoded',
-                                            data=dict(form)))
-
-        self.assert_redirects(response,url_for('index'))
+    def test_not_auth_user(self):
+        res = self.client.get('/app/manager')
+        self.assertEqual(res.status_code, 404)
 
 
 if __name__ == '__main__':

@@ -52,6 +52,10 @@ def login():
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         user_id = request.form['user_id']
+        if( not first_name or not last_name or not user_id):
+            error = u'חובה למלא את כל השדות'
+            return render_template('login.html',
+                                   error=error)
 
         user = User.query.filter(User.first_name == first_name, User.last_name == last_name,
                                  User.user_id == int(user_id)).first()

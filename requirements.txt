@@ -38,3 +38,4 @@ Werkzeug==0.12.1
 wheel==0.24.0
 Whoosh==2.7.4
 WTForms==2.1
+requests==2.18.4

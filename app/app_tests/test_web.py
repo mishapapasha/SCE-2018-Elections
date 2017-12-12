@@ -1,12 +1,6 @@
-import unittest
-from flask import url_for
+from app import app, db
 from app.models import User
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-
-
-import requests
-from app import app, db
 from flask_testing import LiveServerTestCase
 
 
@@ -32,9 +26,9 @@ class UITestLiveServer(LiveServerTestCase):
         del self.browser
         db.drop_all()
 
-    def test_server_is_up_and_running(self):
-        response = requests.get(self.get_server_url())
-        self.assertEqual(response.status_code, 200)
+    # def test_server_is_up_and_running(self):
+    #     response = requests.get(self.get_server_url())
+    #     self.assertEqual(response.status_code, 200)
 
     def test_user_without_id_selenium(self):
         self.db.session.add(User(first_name='John', last_name='Vituli', user_id=123456))

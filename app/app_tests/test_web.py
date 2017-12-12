@@ -16,6 +16,8 @@ class UITestLiveServer(LiveServerTestCase):
 
     def setUp(self):
         db.create_all()
+        self.app_context = app.app_context()
+        self.app_context.push()
 
     def tearDown(self):
         self.browser.close()

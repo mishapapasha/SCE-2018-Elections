@@ -29,11 +29,6 @@ class UITestLiveServer(LiveServerTestCase):
             db.drop_all()
 
 
-    def test_server_is_up_and_running(self):
-        with app.app_context():
-            response = requests.get(self.get_server_url())
-            self.assertEqual(response.status_code, 200)
-
 
     def test_user_without_id_selenium(self):
         with app.app_context():

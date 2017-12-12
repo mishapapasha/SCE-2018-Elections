@@ -4,9 +4,6 @@ from selenium import webdriver
 from flask_testing import LiveServerTestCase
 
 
-from app.app_tests.test_base import BaseTestCase
-
-
 class UITestLiveServer(LiveServerTestCase):
 
     def create_app(self):

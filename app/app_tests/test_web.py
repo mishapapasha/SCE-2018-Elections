@@ -13,7 +13,7 @@ class UITestLiveServer(LiveServerTestCase):
         app.config['LIVESERVER_TIMEOUT'] = 1000
         self.db = db
         with app.app_context():
-            self.browser = webdriver.PhantomJS('app/app_tests/phantomjs')
+            self.browser = webdriver.PhantomJS()
         return app
 
     def setUp(self):

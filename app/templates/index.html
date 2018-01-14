@@ -7,7 +7,7 @@
     <div class="container" align="center">
         <h1 dir="rtl">ברוכים הבאים  , {{ user.first_name }}</h1>
         <h3 dir="rtl">לצורך הצבעה, בחר את המפלגה הרצויה ולחץ 'סיום'</h3>
-        <form onsubmit="areYouSure(this)" method="post">
+        <form id="partyForm" method="post">
             {% for party in parties %}
             <div class="col-sm-12 col-xs-12 col-md-4 col-lg-3" style="padding: 5px">
                     <div class="form-check">
@@ -21,20 +21,34 @@
                     </div>
             </div>
         {% endfor %}
-            <div class="submitbote">
-                <button id="submit" type="submit" class="btn btn-primary">סיום</button>
-            </div>
+
         </form>
+            <div class="submitbote">
+                <button id="submitForm"
+                        data-toggle="modal"
+                        data-target="#areYouSureModal"
+                        class="btn btn-primary">סיום</button>
+            </div>
     </div>
 
-    <script>
-        function areYouSure(form){
-            if(confirm('Are you sure That you are gay?')){
-                form.submit();
-            }else{
-                form.method = "GET"
-            }
-        }
 
-    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="areYouSureModal" tabindex="-1" role="dialog" aria-labelledby="user-modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="user-modal">Modal title</h5>
+          </div>
+          <div class="modal-body">
+            Are you sure ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="dismiss" class="btn btn-secondary" data-dismiss="modal">No</button>
+            <button type="button" id="confirm" onclick="$('#partyForm').submit()" class="btn btn-primary">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 {% endblock %}

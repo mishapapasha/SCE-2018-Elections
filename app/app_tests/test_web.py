@@ -2,6 +2,7 @@ from app import app, db
 from app.models import User, Party
 from selenium import webdriver
 from flask_testing import LiveServerTestCase
+import time
 
 
 class UITestLiveServer(LiveServerTestCase):
@@ -12,7 +13,7 @@ class UITestLiveServer(LiveServerTestCase):
         app.config['LIVESERVER_TIMEOUT'] = 1000
         self.db = db
         with app.app_context():
-            self.browser = webdriver.Chrome('app/app_tests/chromedriver')
+            self.browser = webdriver.PhantomJS('app/app_tests/phantomjs')
         return app
 
     def setUp(self):
@@ -96,10 +97,11 @@ class UITestLiveServer(LiveServerTestCase):
 
             party = self.browser.find_element_by_id('הליכוד')
             self.browser.execute_script('arguments[0].checked = true;', party)
-            submit = self.browser.find_element_by_id('submit')
+            submit = self.browser.find_element_by_id('submitForm')
             submit.click()
-            popup = self.browser.switch_to.alert
-            popup.accept()
+            time.sleep(3)
+            popup = self.browser.find_element_by_id('confirm')
+            popup.click()
             self.assertEqual(self.browser.current_url, self.get_server_url() + '/login')
 
 

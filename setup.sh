@@ -25,3 +25,4 @@ sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 5000
 
 #run app
 nohup python run.py > ../log.txt 2>&1 </dev/null &
+

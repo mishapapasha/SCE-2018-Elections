@@ -27,4 +27,3 @@ db.session.add(michale)
 
 db.session.commit()
 users = User.query.all()
-print (users)

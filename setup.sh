@@ -11,7 +11,7 @@ sudo yum -y groupinstall "Development Tools"
 sudo easy_install pip
 
 #clone proejct repo
-git clone https://github.com/mishapapasha/SCE-2018-Elections.git
+git clone https://github.com/watted/SCE-2018-Elections.git
 cd SCE-2018-Elections
 
 #install our app requirements
@@ -25,4 +25,3 @@ sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 5000
 
 #run app
 nohup python run.py > ../log.txt 2>&1 </dev/null &
-
